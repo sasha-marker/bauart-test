@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \backend\models\LoginForm */
+/* @var $model \common\models\LoginForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -10,47 +10,26 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="site-login">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-<div class="card">
-    <div class="body">
-        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+    <p>Please fill out the following fields to login:</p>
 
-        <div class="msg">Для работы необходимо авторизоваться</div>
+    <div class="row">
+        <div class="col-lg-5">
+            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-        <?= $form->field($model, 'email', [
-            'template' => "<div class=\"input-group\">
-                <span class=\"input-group-addon\">
-                    <i class=\"material-icons\">person</i>
-                </span>
-                <div class=\"form-line\">
-                    {input}
-                    {error}
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+
+                <?= $form->field($model, 'password')->passwordInput() ?>
+
+                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
-            </div>"
-        ])->textInput(['autofocus' => true, 'placeholder' => $model->getAttributeLabel('email')]) ?>
 
-        <?= $form->field($model, 'password', [
-            'template' => "<div class=\"input-group\">
-                        <span class=\"input-group-addon\">
-                            <i class=\"material-icons\">lock</i>
-                        </span>
-                <div class=\"form-line\">
-                    {input}
-                    {error}
-                </div>
-            </div>"
-        ])->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
-
-        <div class="row">
-            <div class="col-xs-8 p-t-5">
-                <?= Html::activeCheckbox($model, 'rememberMe', ['class' => 'filled-in chk-col-pink', 'label' => false]) ?>
-                <label for="loginform-rememberme">Запомнить меня</label>
-            </div>
-            <div class="col-xs-4">
-                <?= Html::submitButton('Войти', ['class' => 'btn btn-block bg-pink waves-effect', 'name' => 'login-button']) ?>
-            </div>
+            <?php ActiveForm::end(); ?>
         </div>
-
-        <?php ActiveForm::end(); ?>
     </div>
 </div>
