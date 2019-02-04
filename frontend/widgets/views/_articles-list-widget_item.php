@@ -1,1 +1,0 @@
-<li data-model_id="<?= $model->id ?>"><?= $model->title ?> <span class="article-actions"><i class="glyphicon glyphicon-eye-open article-view"></i><i class="glyphicon glyphicon-trash article-delete"></i></span></li> 
